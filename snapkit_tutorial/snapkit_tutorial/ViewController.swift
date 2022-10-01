@@ -11,16 +11,36 @@ class ViewController: UIViewController {
 
     lazy var greenBox = { () -> UIView in
         let view = UIView()
-        view.backgroundColor = .green 
+        view.backgroundColor = .green
         return view
+    }()
 
+    lazy var yellowBox = { () -> UIView in
+        let view = UIView()
+        view.backgroundColor = .yellow
+        return view
+    }()
 
-    }
+    lazy var redBox = { () -> UIView in
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
+    }()
+
+    lazy var blueBox = { () -> UIView in
+        let view = UIView()
+        view.backgroundColor = .blue
+        return view
+    }()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.view.addSubview(yellowBox)
+        self.view.addSubview(greenBox)
+        self.view.addSubview(redBox)
+        self.view.addSubview(blueBox)
     }
 
 
