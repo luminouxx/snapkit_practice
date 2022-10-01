@@ -42,19 +42,44 @@ class ViewController: UIViewController {
         self.view.addSubview(redBox)
         self.view.addSubview(blueBox)
 
-        yellowBox.translatesAutoresizingMaskIntoConstraints = false
-        greenBox.translatesAutoresizingMaskIntoConstraints = false
-        redBox.translatesAutoresizingMaskIntoConstraints = false
-        blueBox.translatesAutoresizingMaskIntoConstraints = false
+//        yellowBox.translatesAutoresizingMaskIntoConstraints = false
+//        greenBox.translatesAutoresizingMaskIntoConstraints = false
+//        redBox.translatesAutoresizingMaskIntoConstraints = false
+//        blueBox.translatesAutoresizingMaskIntoConstraints = false
 
-//        yellowBox.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-//        yellowBox.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.8).isActive = true
-//        yellowBox.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        yellowBox.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        yellowBox.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-        yellowBox.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        yellowBox.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20).isActive = true
-        yellowBox.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+        // 기존 오토레이아웃
+//        yellowBox.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+//        yellowBox.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+//        yellowBox.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20).isActive = true
+//        yellowBox.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+
+        // SnapKit
+        yellowBox.snp.makeConstraints { make in
+//            make.edges.equalTo(self.view).inset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
+            // Equal to SuperView
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
+
+        }
+
+        redBox.snp.makeConstraints { make in
+            make.width.height.equalTo(100)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.centerX.equalToSuperview()
+//            make.center.equalToSuperview()
+        }
+
+        // 기존의 코드
+//        redBox.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            redBox.widthAnchor.constraint(equalToConstant: 100),
+//            redBox.heightAnchor.constraint(equalToConstant: 100)
+//        ])
+
+        blueBox.snp.makeConstraints { make in
+            make.width.height.equalTo(100)
+            make.top.equalTo(redBox.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
 
 
     }
